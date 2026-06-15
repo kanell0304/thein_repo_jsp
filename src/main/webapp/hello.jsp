@@ -7,7 +7,7 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-		<%! x
+		<%! 
 			String name = "홍길동";
 			
 			String printToday() {
