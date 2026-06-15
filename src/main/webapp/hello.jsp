@@ -8,7 +8,13 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 		<%! 
+			int count = 3;
+
 			String name = "홍길동";
+
+			String makeItLower(String data) {
+				return data.toLowerCase();
+			}
 			
 			String printToday() {
 				LocalDateTime now = LocalDateTime.now();
@@ -26,8 +32,13 @@
 			}
 		%>
 		<%
+			for (int i = 1; i <= count; i++) {
+				out.println("Java Server Pages " + i + ".<br>");
+			}
 		%>
 		<%=
+			makeItLower("Hello World")
+
 			printToday()
 		%>
 	</head>
