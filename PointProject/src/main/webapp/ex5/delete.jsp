@@ -21,7 +21,7 @@
         pstmt = conn.prepareStatement(sql);
         pstmt.setInt(1, id);
         pstmt.executeUpdate();
-
+        
     } catch (Exception e) {
         out.println("오류: " + e.getMessage());
     } finally {

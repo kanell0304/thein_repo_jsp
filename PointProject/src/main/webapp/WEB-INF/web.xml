@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!--
+        MemberServlet은 ex6.MemberServlet 클래스에 선언된
+        @WebServlet("/ex6/member") 어노테이션으로 이미 매핑되어 있습니다.
+        web.xml에 동일한 url-pattern을 중복으로 선언하면 Tomcat 컨텍스트
+        시작 시 매핑 충돌 오류가 발생하므로 여기서는 선언하지 않습니다.
+    -->
+
+</web-app>

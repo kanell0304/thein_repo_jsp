@@ -1,63 +1,18 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-    request.setCharacterEncoding("UTF-8");
-    String method = request.getMethod();
-
-    // POST로 제출됐을 때만 저장 처리
-    if ("POST".equals(method)) {
-        String title   = request.getParameter("title");
-        String content = request.getParameter("content");
-        String author  = request.getParameter("author");
-
-        String url    = "jdbc:postgresql://localhost:5432/hrd";
-        String dbUser = "postgres";
-        String dbPass = "1234";
-
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection(url, dbUser, dbPass);
-
-            String sql = "INSERT INTO board (title, content, author) VALUES (?, ?, ?)";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, title);
-            pstmt.setString(2, content);
-            pstmt.setString(3, author);
-            pstmt.executeUpdate();
-
-            response.sendRedirect("list.jsp");
-            return;
-
-        } catch (Exception e) {
-            out.println("오류: " + e.getMessage());
-        } finally {
-            if (pstmt != null) try { pstmt.close(); } catch(Exception e) {}
-            if (conn  != null) try { conn.close();  } catch(Exception e) {}
-        }
-    }
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><title>글쓰기</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>오류 발생</title>
+    <style>
+        body { font-family: sans-serif; padding: 40px; text-align: center; }
+        h2 { color: #c00; }
+        .btn { display: inline-block; margin-top: 20px; padding: 8px 16px; border: 1px solid #999; border-radius: 3px; color: #333; text-decoration: none; }
+    </style>
+</head>
 <body>
-
-<jsp:include page="header.jsp"/>
-
-<h2>글쓰기</h2>
-
-<form method="post">
-    제목   : <input type="text" name="title" style="width:400px"><br><br>
-    작성자 : <input type="text" name="author"><br><br>
-    내용   : <textarea name="content" rows="8" cols="60"></textarea><br><br>
-    <input type="submit" value="저장">
-    <a href="list.jsp">취소</a>
-</form>
-
+    <h2>오류가 발생했습니다.</h2>
+    <p><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "알 수 없는 오류가 발생했습니다." %></p>
+    <a class="btn" href="member">목록으로 돌아가기</a>
 </body>
 </html>
